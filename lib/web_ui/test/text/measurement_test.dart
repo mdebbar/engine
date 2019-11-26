@@ -157,7 +157,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('   abc', hardBreak: true, width: 60.0, lineNumber: 0),
+            line('   abc', hardBreak: true, width: 60, lineNumber: 0, left: 0),
           ]);
         }
 
@@ -169,7 +169,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('abc   ', hardBreak: true, width: 30.0, lineNumber: 0),
+            line('abc   ', hardBreak: true, width: 30, lineNumber: 0, left: 0),
           ]);
         }
 
@@ -181,7 +181,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('  ab   c  ', hardBreak: true, width: 80.0, lineNumber: 0),
+            line('  ab   c  ', hardBreak: true, width: 80.0, lineNumber: 0, left: 0),
           ]);
         }
 
@@ -193,7 +193,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line(' ', hardBreak: true, width: 0.0, lineNumber: 0),
+            line(' ', hardBreak: true, width: 0.0, lineNumber: 0, left: 0),
           ]);
         }
 
@@ -205,7 +205,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('     ', hardBreak: true, width: 0.0, lineNumber: 0),
+            line('     ', hardBreak: true, width: 0.0, lineNumber: 0, left: 0),
           ]);
         }
       },
@@ -225,7 +225,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('12345', hardBreak: true, width: 50.0, lineNumber: 0),
+            line('12345', hardBreak: true, width: 50.0, lineNumber: 0, left: 0),
           ]);
         }
       },
@@ -247,8 +247,8 @@ void main() async {
         expect(result.height, 20);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('foo bar ', hardBreak: false, width: 70.0, lineNumber: 0),
-            line('baz', hardBreak: true, width: 30.0, lineNumber: 1),
+            line('foo bar ', hardBreak: false, width: 70.0, lineNumber: 0, left: 0),
+            line('baz', hardBreak: true, width: 30.0, lineNumber: 1, left: 0),
           ]);
         }
       },
@@ -268,8 +268,8 @@ void main() async {
         expect(result.height, 20);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('12345', hardBreak: false, width: 50.0, lineNumber: 0),
-            line('67890', hardBreak: true, width: 50.0, lineNumber: 1),
+            line('12345', hardBreak: false, width: 50.0, lineNumber: 0, left: 0),
+            line('67890', hardBreak: true, width: 50.0, lineNumber: 1, left: 0),
           ]);
         }
 
@@ -283,9 +283,9 @@ void main() async {
         expect(result.height, 30);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('abcde', hardBreak: false, width: 50.0, lineNumber: 0),
-            line('fghij', hardBreak: false, width: 50.0, lineNumber: 1),
-            line('k lm', hardBreak: true, width: 40.0, lineNumber: 2),
+            line('abcde', hardBreak: false, width: 50.0, lineNumber: 0, left: 0),
+            line('fghij', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+            line('k lm', hardBreak: true, width: 40.0, lineNumber: 2, left: 0),
           ]);
         }
 
@@ -301,8 +301,8 @@ void main() async {
         expect(result.height, 20);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('A', hardBreak: false, width: 10.0, lineNumber: 0),
-            line('A', hardBreak: true, width: 10.0, lineNumber: 1),
+            line('A', hardBreak: false, width: 10.0, lineNumber: 0, left: 0),
+            line('A', hardBreak: true, width: 10.0, lineNumber: 1, left: 0),
           ]);
         }
 
@@ -317,9 +317,9 @@ void main() async {
           expect(result.height, 30);
 
           expect(result.lines, <EngineLineMetrics>[
-            line('A', hardBreak: false, width: 10.0, lineNumber: 0),
-            line('A', hardBreak: true, width: 10.0, lineNumber: 1),
-            line('A', hardBreak: true, width: 10.0, lineNumber: 2),
+            line('A', hardBreak: false, width: 10.0, lineNumber: 0, left: 0),
+            line('A', hardBreak: true, width: 10.0, lineNumber: 1, left: 0),
+            line('A', hardBreak: true, width: 10.0, lineNumber: 2, left: 0),
           ]);
         }
 
@@ -332,10 +332,10 @@ void main() async {
         expect(result.height, 40);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('A', hardBreak: false, width: 10.0, lineNumber: 0),
-            line('A', hardBreak: false, width: 10.0, lineNumber: 1),
-            line('A', hardBreak: true, width: 10.0, lineNumber: 2),
-            line('', hardBreak: true, width: 0.0, lineNumber: 3),
+            line('A', hardBreak: false, width: 10.0, lineNumber: 0, left: 0),
+            line('A', hardBreak: false, width: 10.0, lineNumber: 1, left: 0),
+            line('A', hardBreak: true, width: 10.0, lineNumber: 2, left: 0),
+            line('', hardBreak: true, width: 0.0, lineNumber: 3, left: 0),
           ]);
         }
       },
@@ -355,8 +355,8 @@ void main() async {
         expect(result.height, 20);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('12', hardBreak: true, width: 20.0, lineNumber: 0),
-            line('34', hardBreak: true, width: 20.0, lineNumber: 1),
+            line('12', hardBreak: true, width: 20.0, lineNumber: 0, left: 0),
+            line('34', hardBreak: true, width: 20.0, lineNumber: 1, left: 0),
           ]);
         }
       },
@@ -372,9 +372,9 @@ void main() async {
       expect(result.height, 30);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('', hardBreak: true, width: 0.0, lineNumber: 0),
-          line('', hardBreak: true, width: 0.0, lineNumber: 1),
-          line('1234', hardBreak: true, width: 40.0, lineNumber: 2),
+          line('', hardBreak: true, width: 0.0, lineNumber: 0, left: 0),
+          line('', hardBreak: true, width: 0.0, lineNumber: 1, left: 0),
+          line('1234', hardBreak: true, width: 40.0, lineNumber: 2, left: 0),
         ]);
       }
 
@@ -385,9 +385,9 @@ void main() async {
       expect(result.height, 30);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('12', hardBreak: true, width: 20.0, lineNumber: 0),
-          line('', hardBreak: true, width: 0.0, lineNumber: 1),
-          line('345', hardBreak: true, width: 30.0, lineNumber: 2),
+          line('12', hardBreak: true, width: 20.0, lineNumber: 0, left: 0),
+          line('', hardBreak: true, width: 0.0, lineNumber: 1, left: 0),
+          line('345', hardBreak: true, width: 30.0, lineNumber: 2, left: 0),
         ]);
       }
 
@@ -399,9 +399,9 @@ void main() async {
         // This can only be done correctly in the canvas-based implementation.
         expect(result.height, 30);
         expect(result.lines, <EngineLineMetrics>[
-          line('1234', hardBreak: true, width: 40.0, lineNumber: 0),
-          line('', hardBreak: true, width: 0.0, lineNumber: 1),
-          line('', hardBreak: true, width: 0.0, lineNumber: 2),
+          line('1234', hardBreak: true, width: 40.0, lineNumber: 0, left: 0),
+          line('', hardBreak: true, width: 0.0, lineNumber: 1, left: 0),
+          line('', hardBreak: true, width: 0.0, lineNumber: 2, left: 0),
         ]);
       }
     });
@@ -460,9 +460,9 @@ void main() async {
       expect(result.minIntrinsicWidth, 40);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('abc ', hardBreak: false, width: 30.0, lineNumber: 0),
-          line('de ', hardBreak: false, width: 20.0, lineNumber: 1),
-          line('fghi', hardBreak: true, width: 40.0, lineNumber: 2),
+          line('abc ', hardBreak: false, width: 30.0, lineNumber: 0, left: 0),
+          line('de ', hardBreak: false, width: 20.0, lineNumber: 1, left: 0),
+          line('fghi', hardBreak: true, width: 40.0, lineNumber: 2, left: 0),
         ]);
       }
 
@@ -471,9 +471,9 @@ void main() async {
       expect(result.minIntrinsicWidth, 40);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('abcd', hardBreak: true, width: 40.0, lineNumber: 0),
-          line('ef', hardBreak: true, width: 20.0, lineNumber: 1),
-          line('ghi', hardBreak: true, width: 30.0, lineNumber: 2),
+          line('abcd', hardBreak: true, width: 40.0, lineNumber: 0, left: 0),
+          line('ef', hardBreak: true, width: 20.0, lineNumber: 1, left: 0),
+          line('ghi', hardBreak: true, width: 30.0, lineNumber: 2, left: 0),
         ]);
       }
 
@@ -482,8 +482,8 @@ void main() async {
       expect(result.minIntrinsicWidth, 40);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('abcd      ', hardBreak: false, width: 40.0, lineNumber: 0),
-          line('efg', hardBreak: true, width: 30.0, lineNumber: 1),
+          line('abcd      ', hardBreak: false, width: 40.0, lineNumber: 0, left: 0),
+          line('efg', hardBreak: true, width: 30.0, lineNumber: 1, left: 0),
         ]);
       }
 
@@ -492,8 +492,8 @@ void main() async {
       expect(result.minIntrinsicWidth, 40);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('abc    ', hardBreak: true, width: 30.0, lineNumber: 0),
-          line('defg', hardBreak: true, width: 40.0, lineNumber: 1),
+          line('abc    ', hardBreak: true, width: 30.0, lineNumber: 0, left: 0),
+          line('defg', hardBreak: true, width: 40.0, lineNumber: 1, left: 0),
         ]);
       }
 
@@ -502,9 +502,9 @@ void main() async {
       expect(result.minIntrinsicWidth, 120);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('AAAAA', hardBreak: false, width: 50.0, lineNumber: 0),
-          line('AAAAA', hardBreak: false, width: 50.0, lineNumber: 1),
-          line('AA', hardBreak: true, width: 20.0, lineNumber: 2),
+          line('AAAAA', hardBreak: false, width: 50.0, lineNumber: 0, left: 0),
+          line('AAAAA', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+          line('AA', hardBreak: true, width: 20.0, lineNumber: 2, left: 0),
         ]);
       }
     });
@@ -517,9 +517,9 @@ void main() async {
       expect(result.maxIntrinsicWidth, 110);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('abc ', hardBreak: false, width: 30.0, lineNumber: 0),
-          line('de ', hardBreak: false, width: 20.0, lineNumber: 1),
-          line('fghi', hardBreak: true, width: 40.0, lineNumber: 2),
+          line('abc ', hardBreak: false, width: 30.0, lineNumber: 0, left: 0),
+          line('de ', hardBreak: false, width: 20.0, lineNumber: 1, left: 0),
+          line('fghi', hardBreak: true, width: 40.0, lineNumber: 2, left: 0),
         ]);
       }
 
@@ -528,9 +528,9 @@ void main() async {
       expect(result.maxIntrinsicWidth, 40);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('abcd', hardBreak: true, width: 40.0, lineNumber: 0),
-          line('ef', hardBreak: true, width: 20.0, lineNumber: 1),
-          line('ghi', hardBreak: true, width: 30.0, lineNumber: 2),
+          line('abcd', hardBreak: true, width: 40.0, lineNumber: 0, left: 0),
+          line('ef', hardBreak: true, width: 20.0, lineNumber: 1, left: 0),
+          line('ghi', hardBreak: true, width: 30.0, lineNumber: 2, left: 0),
         ]);
       }
 
@@ -539,8 +539,8 @@ void main() async {
       expect(result.maxIntrinsicWidth, 100);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('abcd   ', hardBreak: false, width: 40.0, lineNumber: 0),
-          line('efg', hardBreak: true, width: 30.0, lineNumber: 1),
+          line('abcd   ', hardBreak: false, width: 40.0, lineNumber: 0, left: 0),
+          line('efg', hardBreak: true, width: 30.0, lineNumber: 1, left: 0),
         ]);
       }
 
@@ -549,8 +549,8 @@ void main() async {
       expect(result.maxIntrinsicWidth, 100);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('abc ', hardBreak: false, width: 30.0, lineNumber: 0),
-          line('def   ', hardBreak: true, width: 30.0, lineNumber: 1),
+          line('abc ', hardBreak: false, width: 30.0, lineNumber: 0, left: 0),
+          line('def   ', hardBreak: true, width: 30.0, lineNumber: 1, left: 0),
         ]);
       }
 
@@ -559,8 +559,8 @@ void main() async {
       expect(result.maxIntrinsicWidth, 60);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('abc ', hardBreak: true, width: 30.0, lineNumber: 0),
-          line('def   ', hardBreak: true, width: 30.0, lineNumber: 1),
+          line('abc ', hardBreak: true, width: 30.0, lineNumber: 0, left: 0),
+          line('def   ', hardBreak: true, width: 30.0, lineNumber: 1, left: 0),
         ]);
       }
 
@@ -569,9 +569,9 @@ void main() async {
       expect(result.maxIntrinsicWidth, 120);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('AAAAA', hardBreak: false, width: 50.0, lineNumber: 0),
-          line('AAAAA', hardBreak: false, width: 50.0, lineNumber: 1),
-          line('AA', hardBreak: true, width: 20.0, lineNumber: 2),
+          line('AAAAA', hardBreak: false, width: 50.0, lineNumber: 0, left: 0),
+          line('AAAAA', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+          line('AA', hardBreak: true, width: 20.0, lineNumber: 2, left: 0),
         ]);
       }
     });
@@ -599,7 +599,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('AA...', hardBreak: false, width: 50.0, lineNumber: 0),
+            line('AA...', hardBreak: false, width: 50.0, lineNumber: 0, left: 0),
           ]);
         }
 
@@ -615,8 +615,8 @@ void main() async {
         expect(result.height, 20);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('AAA', hardBreak: true, width: 30.0, lineNumber: 0),
-            line('AA...', hardBreak: false, width: 50.0, lineNumber: 1),
+            line('AAA', hardBreak: true, width: 30.0, lineNumber: 0, left: 0),
+            line('AA...', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
           ]);
         }
 
@@ -630,7 +630,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('...', hardBreak: false, width: 30.0, lineNumber: 0),
+            line('...', hardBreak: false, width: 30.0, lineNumber: 0, left: 0),
           ]);
         }
 
@@ -644,7 +644,7 @@ void main() async {
         // TODO(flutter_web): https://github.com/flutter/flutter/issues/34346
         // if (instance is CanvasTextMeasurementService) {
         //   expect(result.lines, <EngineLineMetrics>[
-        //     line('.', hardBreak: false, width: 10.0, lineNumber: 0),
+        //     line('.', hardBreak: false, width: 10.0, lineNumber: 0, left: 0),
         //   ]);
         // }
       },
@@ -665,7 +665,7 @@ void main() async {
       expect(result.height, 10);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('One line', hardBreak: true, width: 80.0, lineNumber: 0),
+          line('One line', hardBreak: true, width: 80.0, lineNumber: 0, left: 0),
         ]);
       }
 
@@ -676,8 +676,8 @@ void main() async {
       expect(result.height, 20);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('First', hardBreak: true, width: 50.0, lineNumber: 0),
-          line('Second', hardBreak: true, width: 60.0, lineNumber: 1),
+          line('First', hardBreak: true, width: 50.0, lineNumber: 0, left: 0),
+          line('Second', hardBreak: true, width: 60.0, lineNumber: 1, left: 0),
         ]);
       }
 
@@ -690,8 +690,8 @@ void main() async {
       expect(result.height, 20);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('Lorem ', hardBreak: false, width: 50.0, lineNumber: 0),
-          line('ipsum ', hardBreak: false, width: 50.0, lineNumber: 1),
+          line('Lorem ', hardBreak: false, width: 50.0, lineNumber: 0, left: 0),
+          line('ipsum ', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
         ]);
       }
 
@@ -704,8 +704,8 @@ void main() async {
       expect(result.height, 20);
       if (instance is CanvasTextMeasurementService) {
         expect(result.lines, <EngineLineMetrics>[
-          line('AAA ', hardBreak: false, width: 30.0, lineNumber: 0),
-          line('AAAAA', hardBreak: false, width: 50.0, lineNumber: 1),
+          line('AAA ', hardBreak: false, width: 30.0, lineNumber: 0, left: 0),
+          line('AAAAA', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
         ]);
       }
     });
@@ -737,7 +737,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('abcdef', hardBreak: true, width: 60.0, lineNumber: 0),
+            line('abcdef', hardBreak: true, width: 60.0, lineNumber: 0, left: 0),
           ]);
         }
 
@@ -747,7 +747,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('abc...', hardBreak: false, width: 60.0, lineNumber: 0),
+            line('abc...', hardBreak: false, width: 60.0, lineNumber: 0, left: 0),
           ]);
         }
 
@@ -757,7 +757,7 @@ void main() async {
         expect(result.height, 10);
         if (instance is CanvasTextMeasurementService) {
           expect(result.lines, <EngineLineMetrics>[
-            line('a b...', hardBreak: false, width: 60.0, lineNumber: 0),
+            line('a b...', hardBreak: false, width: 60.0, lineNumber: 0, left: 0),
           ]);
         }
 
@@ -770,8 +770,8 @@ void main() async {
           expect(result.height, 20);
 
           expect(result.lines, <EngineLineMetrics>[
-            line('abcdef ', hardBreak: false, width: 60.0, lineNumber: 0),
-            line('ghijkl', hardBreak: true, width: 60.0, lineNumber: 1),
+            line('abcdef ', hardBreak: false, width: 60.0, lineNumber: 0, left: 0),
+            line('ghijkl', hardBreak: true, width: 60.0, lineNumber: 1, left: 0),
           ]);
         }
 
@@ -783,8 +783,8 @@ void main() async {
           expect(result.height, 20);
 
           expect(result.lines, <EngineLineMetrics>[
-            line('abcd ', hardBreak: false, width: 40.0, lineNumber: 0),
-            line('efg...', hardBreak: false, width: 60.0, lineNumber: 1),
+            line('abcd ', hardBreak: false, width: 40.0, lineNumber: 0, left: 0),
+            line('efg...', hardBreak: false, width: 60.0, lineNumber: 1, left: 0),
           ]);
         }
 
@@ -797,8 +797,8 @@ void main() async {
           expect(result.height, 20);
 
           expect(result.lines, <EngineLineMetrics>[
-            line('abcde ', hardBreak: false, width: 50.0, lineNumber: 0),
-            line('f g...', hardBreak: false, width: 60.0, lineNumber: 1),
+            line('abcde ', hardBreak: false, width: 50.0, lineNumber: 0, left: 0),
+            line('f g...', hardBreak: false, width: 60.0, lineNumber: 1, left: 0),
           ]);
         }
 
@@ -810,8 +810,8 @@ void main() async {
           expect(result.height, 20);
 
           expect(result.lines, <EngineLineMetrics>[
-            line('abcdef', hardBreak: false, width: 60.0, lineNumber: 0),
-            line('g hijk', hardBreak: true, width: 60.0, lineNumber: 1),
+            line('abcdef', hardBreak: false, width: 60.0, lineNumber: 0, left: 0),
+            line('g hijk', hardBreak: true, width: 60.0, lineNumber: 1, left: 0),
           ]);
         }
 
@@ -823,10 +823,123 @@ void main() async {
           expect(result.height, 20);
 
           expect(result.lines, <EngineLineMetrics>[
-            line('abcdef', hardBreak: false, width: 60.0, lineNumber: 0),
-            line('g h...', hardBreak: false, width: 60.0, lineNumber: 1),
+            line('abcdef', hardBreak: false, width: 60.0, lineNumber: 0, left: 0),
+            line('g h...', hardBreak: false, width: 60.0, lineNumber: 1, left: 0),
           ]);
         }
+      },
+    );
+
+    test('handles textAlign', () {
+      TextMeasurementService instance = TextMeasurementService.canvasInstance;
+      ui.Paragraph p;
+      MeasurementResult result;
+
+      ui.ParagraphStyle createStyle(ui.TextAlign textAlign) {
+        return ui.ParagraphStyle(
+          fontFamily: 'ahem',
+          fontSize: 10,
+          textAlign: textAlign,
+          textDirection: ui.TextDirection.ltr,
+        );
+      }
+
+      p = build(createStyle(ui.TextAlign.start), 'abc\ndefghi');
+      result = instance.measure(p, constraints);
+      expect(result.lines, <EngineLineMetrics>[
+        line('abc', hardBreak: true, width: 30.0, lineNumber: 0, left: 0),
+        line('defgh', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+        line('i', hardBreak: true, width: 10.0, lineNumber: 2, left: 0),
+      ]);
+
+      p = build(createStyle(ui.TextAlign.end), 'abc\ndefghi');
+      result = instance.measure(p, constraints);
+      expect(result.lines, <EngineLineMetrics>[
+        line('abc', hardBreak: true, width: 30.0, lineNumber: 0, left: 20),
+        line('defgh', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+        line('i', hardBreak: true, width: 10.0, lineNumber: 2, left: 40),
+      ]);
+
+      p = build(createStyle(ui.TextAlign.center), 'abc\ndefghi');
+      result = instance.measure(p, constraints);
+      expect(result.lines, <EngineLineMetrics>[
+        line('abc', hardBreak: true, width: 30.0, lineNumber: 0, left: 10),
+        line('defgh', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+        line('i', hardBreak: true, width: 10.0, lineNumber: 2, left: 20),
+      ]);
+
+      p = build(createStyle(ui.TextAlign.left), 'abc\ndefghi');
+      result = instance.measure(p, constraints);
+      expect(result.lines, <EngineLineMetrics>[
+        line('abc', hardBreak: true, width: 30.0, lineNumber: 0, left: 0),
+        line('defgh', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+        line('i', hardBreak: true, width: 10.0, lineNumber: 2, left: 0),
+      ]);
+
+      p = build(createStyle(ui.TextAlign.right), 'abc\ndefghi');
+      result = instance.measure(p, constraints);
+      expect(result.lines, <EngineLineMetrics>[
+        line('abc', hardBreak: true, width: 30.0, lineNumber: 0, left: 20),
+        line('defgh', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+        line('i', hardBreak: true, width: 10.0, lineNumber: 2, left: 40),
+      ]);
+    });
+
+    testMeasurements(
+      'handles rtl with textAlign',
+      (TextMeasurementService instance) {
+        TextMeasurementService instance = TextMeasurementService.canvasInstance;
+        ui.Paragraph p;
+        MeasurementResult result;
+
+        ui.ParagraphStyle createStyle(ui.TextAlign textAlign) {
+          return ui.ParagraphStyle(
+            fontFamily: 'ahem',
+            fontSize: 10,
+            textAlign: textAlign,
+            textDirection: ui.TextDirection.rtl,
+          );
+        }
+
+        p = build(createStyle(ui.TextAlign.start), 'abc\ndefghi');
+        result = instance.measure(p, constraints);
+        expect(result.lines, <EngineLineMetrics>[
+          line('abc', hardBreak: true, width: 30.0, lineNumber: 0, left: 20),
+          line('defgh', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+          line('i', hardBreak: true, width: 10.0, lineNumber: 2, left: 40),
+        ]);
+
+        p = build(createStyle(ui.TextAlign.end), 'abc\ndefghi');
+        result = instance.measure(p, constraints);
+        expect(result.lines, <EngineLineMetrics>[
+          line('abc', hardBreak: true, width: 30.0, lineNumber: 0, left: 0),
+          line('defgh', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+          line('i', hardBreak: true, width: 10.0, lineNumber: 2, left: 0),
+        ]);
+
+        p = build(createStyle(ui.TextAlign.center), 'abc\ndefghi');
+        result = instance.measure(p, constraints);
+        expect(result.lines, <EngineLineMetrics>[
+          line('abc', hardBreak: true, width: 30.0, lineNumber: 0, left: 10),
+          line('defgh', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+          line('i', hardBreak: true, width: 10.0, lineNumber: 2, left: 20),
+        ]);
+
+        p = build(createStyle(ui.TextAlign.left), 'abc\ndefghi');
+        result = instance.measure(p, constraints);
+        expect(result.lines, <EngineLineMetrics>[
+          line('abc', hardBreak: true, width: 30.0, lineNumber: 0, left: 0),
+          line('defgh', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+          line('i', hardBreak: true, width: 10.0, lineNumber: 2, left: 0),
+        ]);
+
+        p = build(createStyle(ui.TextAlign.right), 'abc\ndefghi');
+        result = instance.measure(p, constraints);
+        expect(result.lines, <EngineLineMetrics>[
+          line('abc', hardBreak: true, width: 30.0, lineNumber: 0, left: 20),
+          line('defgh', hardBreak: false, width: 50.0, lineNumber: 1, left: 0),
+          line('i', hardBreak: true, width: 10.0, lineNumber: 2, left: 40),
+        ]);
       },
     );
   });
@@ -838,11 +951,13 @@ EngineLineMetrics line(
   double width,
   int lineNumber,
   bool hardBreak,
+  double left,
 }) {
   return EngineLineMetrics.withText(
     text,
     hardBreak: hardBreak,
     width: width,
+    left: left,
     lineNumber: lineNumber,
   );
 }

@@ -790,7 +790,9 @@ class ParagraphRuler {
     final int len = constraintCache.length;
     for (int i = 0; i < len; i++) {
       final MeasurementResult item = constraintCache[i];
-      if (item.constraintWidth == constraints.width) {
+      if (item.constraintWidth == constraints.width &&
+          item.textAlign == paragraph._textAlign &&
+          item.textDirection == paragraph._textDirection) {
         return item;
       }
     }
@@ -804,6 +806,12 @@ class ParagraphRuler {
 class MeasurementResult {
   /// The width that was given as a constraint when the paragraph was laid out.
   final double constraintWidth;
+
+  /// The text align value of the paragraph.
+  final ui.TextAlign textAlign;
+
+  /// The text direction of the paragraph.
+  final ui.TextDirection textDirection;
 
   /// Whether the paragraph can fit in a single line given [constraintWidth].
   final bool isSingleLine;
@@ -842,7 +850,8 @@ class MeasurementResult {
   /// of each laid out line.
   final List<EngineLineMetrics> lines;
 
-  const MeasurementResult(
+  MeasurementResult.forParagraph(
+    EngineParagraph paragraph,
     this.constraintWidth, {
     @required this.isSingleLine,
     @required this.width,
@@ -862,5 +871,7 @@ class MeasurementResult {
         assert(minIntrinsicWidth != null),
         assert(maxIntrinsicWidth != null),
         assert(alphabeticBaseline != null),
-        assert(ideographicBaseline != null);
+        assert(ideographicBaseline != null),
+        textAlign = paragraph._textAlign,
+        textDirection = paragraph._textDirection;
 }

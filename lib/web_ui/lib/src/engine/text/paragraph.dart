@@ -25,12 +25,13 @@ class EngineLineMetrics implements ui.LineMetrics {
     this.unscaledAscent,
     this.height,
     @required this.width,
-    this.left,
+    @required this.left,
     this.baseline,
     @required this.lineNumber,
   })  : assert(text != null),
         assert(hardBreak != null),
         assert(width != null),
+        assert(left != null),
         assert(lineNumber != null && lineNumber >= 0);
 
   /// The textual content representing this line.
@@ -97,6 +98,12 @@ class EngineLineMetrics implements ui.LineMetrics {
         left == typedOther.left &&
         baseline == typedOther.baseline &&
         lineNumber == typedOther.lineNumber;
+  }
+
+  // TODO(MDEBBAR): REMOVE!
+  @override
+  String toString() {
+    return 'EngineLineMetrics(lineNumber: $lineNumber, text: "$text", hardBreak: $hardBreak, width: $width, left: $left)';
   }
 }
 
@@ -234,6 +241,23 @@ class EngineParagraph implements ui.Paragraph {
       lines.add(metrics.text);
     }
     return lines;
+  }
+
+  /// Returns the substring representing the line at [index].
+  ///
+  /// Can only be used after [layout] has been called.
+  String getLine(int index) {
+    assert(index >= 0);
+
+    if (_measurementResult.lines != null) {
+      assert(index < _measurementResult.lines.length);
+      return _measurementResult.lines[index].text;
+    }
+
+    // If there are no line metrics, the only case we can get the text of a
+    // certain line is when it's a single-line paragraph.
+    assert(_measurementResult.isSingleLine && _plainText != null && index == 0);
+    return _plainText;
   }
 
   @override
