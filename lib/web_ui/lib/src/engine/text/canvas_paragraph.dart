@@ -364,6 +364,12 @@ class FlatTextSpan implements ParagraphSpan {
     assert(end <= text.length);
     return text.substring(start, end);
   }
+
+  /// Returns a new [FlatTextSpan] with the end extended to [newEnd].
+  FlatTextSpan extendTo(int newEnd) {
+    assert(newEnd >= end);
+    return FlatTextSpan(style: style, start: start, end: newEnd);
+  }
 }
 
 class PlaceholderSpan extends ParagraphPlaceholder implements ParagraphSpan {
@@ -678,26 +684,36 @@ class CanvasParagraphBuilder implements ui.ParagraphBuilder {
 
   @override
   void addText(String text) {
-    final EngineTextStyle style = _currentStyleNode.resolveStyle();
+    final EngineTextStyle currentStyle = _currentStyleNode.resolveStyle();
     final int start = _plainTextBuffer.length;
     _plainTextBuffer.write(text);
     final int end = _plainTextBuffer.length;
 
     if (_drawOnCanvas) {
-      final ui.TextDecoration? decoration = style.decoration;
+      final ui.TextDecoration? decoration = currentStyle.decoration;
       if (decoration != null && decoration != ui.TextDecoration.none) {
         _drawOnCanvas = false;
       }
     }
 
     if (_drawOnCanvas) {
-      final List<ui.FontFeature>? fontFeatures = style.fontFeatures;
+      final List<ui.FontFeature>? fontFeatures = currentStyle.fontFeatures;
       if (fontFeatures != null && fontFeatures.isNotEmpty) {
         _drawOnCanvas = false;
       }
     }
 
-    _spans.add(FlatTextSpan(style: style, start: start, end: end));
+    if (_spans.isNotEmpty) {
+      final ParagraphSpan lastSpan = _spans.last;
+      if (lastSpan is FlatTextSpan && lastSpan.style == currentStyle) {
+        // The previous span had the exact same styles, so there's no need to
+        // create a new span. We can append the new text to the previous span.
+        _spans.last = lastSpan.extendTo(end);
+        return;
+      }
+    }
+
+    _spans.add(FlatTextSpan(style: currentStyle, start: start, end: end));
   }
 
   @override

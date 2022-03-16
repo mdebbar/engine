@@ -431,6 +431,52 @@ Future<void> testMain() async {
     );
     debugEmulateFlutterTesterEnvironment = true;
   });
+
+  test('Merges adjacent spans with identical styles', () {
+    final EngineParagraphStyle style = EngineParagraphStyle(fontSize: 13.0);
+    final CanvasParagraphBuilder builder = CanvasParagraphBuilder(style);
+
+    builder.pushStyle(TextStyle(height: 2.0, fontWeight: FontWeight.bold));
+    builder.addText('Lo');
+    builder.addText('re');
+
+    // Push another style that has no effect because it has the same properties
+    // from the previous styles.
+    builder.pushStyle(TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold));
+    builder.addText('m');
+
+    builder.pushStyle(TextStyle(height: 3.5));
+    builder.addText('Ip');
+
+    builder.pushStyle(TextStyle(height: 2.0));
+    builder.addText('sum');
+
+    builder.pop();
+    builder.pop();
+    builder.addText('Dolor');
+
+    final CanvasParagraph paragraph = builder.build();
+    expect(paragraph.paragraphStyle, style);
+    expect(paragraph.toPlainText(), 'LoremIpsumDolor');
+    expect(paragraph.spans, hasLength(3));
+
+    paragraph.layout(const ParagraphConstraints(width: double.infinity));
+    expectOuterHtml(
+      paragraph,
+      '<p style="${paragraphStyle(fontSize: 13)}">'
+      '<span style="${spanStyle(top: null, left: null, fontSize: 13, fontWeight: 'bold', lineHeight: 2)}">'
+      'Lorem'
+      '</span>'
+      '<span style="${spanStyle(top: null, left: null, fontSize: 13, fontWeight: 'bold', lineHeight: 3.5)}">'
+      'Ip'
+      '</span>'
+      '<span style="${spanStyle(top: null, left: null, fontSize: 13, fontWeight: 'bold', lineHeight: 2)}">'
+      'sumDolor'
+      '</span>'
+      '</p>',
+      ignorePositions: true,
+    );
+  });
 }
 
 const String defaultFontFamily = 'Ahem';
