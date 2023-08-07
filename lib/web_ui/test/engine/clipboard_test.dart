@@ -21,23 +21,17 @@ Future<void> testMain() async {
     const String testText = 'test text';
 
     late ClipboardMessageHandler clipboardMessageHandler;
-    MockClipboardAPICopyStrategy clipboardAPICopyStrategy =
-        MockClipboardAPICopyStrategy();
-    MockClipboardAPIPasteStrategy clipboardAPIPasteStrategy =
-        MockClipboardAPIPasteStrategy();
+    late MockClipboardAPIStrategy clipboardAPIStrategy;
 
     setUp(() {
       clipboardMessageHandler = ClipboardMessageHandler();
-      clipboardAPICopyStrategy = MockClipboardAPICopyStrategy();
-      clipboardAPIPasteStrategy = MockClipboardAPIPasteStrategy();
-      clipboardMessageHandler.copyToClipboardStrategy =
-          clipboardAPICopyStrategy;
-      clipboardMessageHandler.pasteFromClipboardStrategy =
-          clipboardAPIPasteStrategy;
+      clipboardAPIStrategy = MockClipboardAPIStrategy();
+      clipboardMessageHandler.copyToClipboardStrategy = clipboardAPIStrategy;
+      clipboardMessageHandler.pasteFromClipboardStrategy = clipboardAPIStrategy;
     });
 
     test('set data successful', () async {
-      clipboardAPICopyStrategy.testResult = true;
+      clipboardAPIStrategy.setDataResult = true;
       const MethodCodec codec = JSONMethodCodec();
       final Completer<bool> completer = Completer<bool>();
       void callback(ByteData? data) {
@@ -54,7 +48,7 @@ Future<void> testMain() async {
     });
 
     test('set data error', () async {
-      clipboardAPICopyStrategy.testResult = false;
+      clipboardAPIStrategy.setDataResult = false;
       const MethodCodec codec = JSONMethodCodec();
       final Completer<ByteData> completer = Completer<ByteData>();
       void callback(ByteData? data) {
@@ -75,7 +69,7 @@ Future<void> testMain() async {
     });
 
     test('get data successful', () async {
-      clipboardAPIPasteStrategy.testResult = testText;
+      clipboardAPIStrategy.getDataResult = testText;
       const MethodCodec codec = JSONMethodCodec();
       final Completer<Map<String, dynamic>> completer = Completer<Map<String, dynamic>>();
       void callback(ByteData? data) {
@@ -90,20 +84,18 @@ Future<void> testMain() async {
   });
 }
 
-class MockClipboardAPICopyStrategy implements ClipboardAPICopyStrategy {
-  bool testResult = true;
+class MockClipboardAPIStrategy implements ClipboardAPIStrategy {
+  bool setDataResult = true;
 
   @override
   Future<bool> setData(String? text) {
-    return Future<bool>.value(testResult);
+    return Future<bool>.value(setDataResult);
   }
-}
 
-class MockClipboardAPIPasteStrategy implements ClipboardAPIPasteStrategy {
-  String testResult = '';
+  String getDataResult = '';
 
   @override
   Future<String> getData() {
-    return Future<String>.value(testResult);
+    return Future<String>.value(getDataResult);
   }
 }

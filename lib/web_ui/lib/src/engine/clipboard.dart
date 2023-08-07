@@ -88,9 +88,11 @@ class ClipboardMessageHandler {
 /// APIs and the browser.
 abstract class CopyToClipboardStrategy {
   factory CopyToClipboardStrategy() {
-    return domWindow.navigator.clipboard != null
-        ? ClipboardAPICopyStrategy()
-        : ExecCommandCopyStrategy();
+    // Can't use ternary expression here because of: https://github.com/dart-lang/sdk/issues/53144
+    if (domWindow.navigator.clipboard == null) {
+      return const ExecCommandStrategy();
+    }
+    return const ClipboardAPIStrategy();
   }
 
   /// Places the text onto the browser Clipboard.
@@ -107,21 +109,30 @@ abstract class CopyToClipboardStrategy {
 /// APIs and the browser.
 abstract class PasteFromClipboardStrategy {
   factory PasteFromClipboardStrategy() {
-    return (browserEngine == BrowserEngine.firefox ||
-            domWindow.navigator.clipboard == null)
-        ? ExecCommandPasteStrategy()
-        : ClipboardAPIPasteStrategy();
+    // Can't use ternary expression here because of: https://github.com/dart-lang/sdk/issues/53144
+    if (browserEngine == BrowserEngine.firefox ||
+        domWindow.navigator.clipboard == null) {
+      return const ExecCommandStrategy();
+    }
+    return const ClipboardAPIStrategy();
   }
 
   /// Returns text from the system Clipboard.
   Future<String> getData();
 }
 
-/// Provides copy functionality for browsers which supports ClipboardAPI.
+/// Provides copy and paste functionalities for browsers which support
+/// ClipboardAPI.
 ///
-/// Works on Chrome and Firefox browsers.
 /// See: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
-class ClipboardAPICopyStrategy implements CopyToClipboardStrategy {
+class ClipboardAPIStrategy implements CopyToClipboardStrategy, PasteFromClipboardStrategy {
+  const ClipboardAPIStrategy();
+
+  @override
+  Future<String> getData() async {
+    return domWindow.navigator.clipboard!.readText();
+  }
+
   @override
   Future<bool> setData(String? text) async {
     try {
@@ -134,21 +145,17 @@ class ClipboardAPICopyStrategy implements CopyToClipboardStrategy {
   }
 }
 
-/// Provides paste functionality for browsers which supports `clipboard.readText`.
-///
-/// Works on Chrome. Firefox only supports `readText` if the target element is
-/// in content editable mode.
-/// See: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Editable_content
-/// See: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
-class ClipboardAPIPasteStrategy implements PasteFromClipboardStrategy {
-  @override
-  Future<String> getData() async {
-    return domWindow.navigator.clipboard!.readText();
-  }
-}
+/// Provides a fallback strategy for browsers which do not support ClipboardAPI.
+class ExecCommandStrategy implements CopyToClipboardStrategy, PasteFromClipboardStrategy {
+  const ExecCommandStrategy();
 
-/// Provides a fallback strategy for browsers which does not support ClipboardAPI.
-class ExecCommandCopyStrategy implements CopyToClipboardStrategy {
+  @override
+  Future<String> getData() {
+    // TODO(mdebbar): https://github.com/flutter/flutter/issues/48581
+    return Future<String>.error(
+        UnimplementedError('Paste is not implemented for this browser.'));
+  }
+
   @override
   Future<bool> setData(String? text) {
     return Future<bool>.value(_setDataSync(text));
@@ -194,15 +201,5 @@ class ExecCommandCopyStrategy implements CopyToClipboardStrategy {
 
   void _removeTemporaryTextArea(DomHTMLElement element) {
     element.remove();
-  }
-}
-
-/// Provides a fallback strategy for browsers which does not support ClipboardAPI.
-class ExecCommandPasteStrategy implements PasteFromClipboardStrategy {
-  @override
-  Future<String> getData() {
-    // TODO(mdebbar): https://github.com/flutter/flutter/issues/48581
-    return Future<String>.error(
-        UnimplementedError('Paste is not implemented for this browser.'));
   }
 }
