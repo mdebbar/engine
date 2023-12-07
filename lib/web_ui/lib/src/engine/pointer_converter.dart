@@ -117,6 +117,7 @@ class PointerDataConverter {
     required double scrollDeltaX,
     required double scrollDeltaY,
     required double scale,
+    ui.PointerEventHandledCallback? handledCallback,
   }) {
     assert(globalPointerState.pointers.containsKey(device));
     final _PointerDeviceState state = globalPointerState.pointers[device]!;
@@ -154,6 +155,7 @@ class PointerDataConverter {
       scrollDeltaX: scrollDeltaX,
       scrollDeltaY: scrollDeltaY,
       scale: scale,
+      handledCallback: handledCallback,
     );
   }
 
@@ -263,6 +265,7 @@ class PointerDataConverter {
     double scrollDeltaX = 0.0,
     double scrollDeltaY = 0.0,
     double scale = 1.0,
+    ui.PointerEventHandledCallback? handledCallback,
   }) {
     if (_debugLogPointerConverter) {
       print('>> view=$viewId device=$device change=$change buttons=$buttons');
@@ -303,6 +306,7 @@ class PointerDataConverter {
               scrollDeltaX: scrollDeltaX,
               scrollDeltaY: scrollDeltaY,
               scale: scale,
+              handledCallback: handledCallback,
             )
           );
         case ui.PointerChange.hover:
@@ -369,6 +373,7 @@ class PointerDataConverter {
               scrollDeltaX: scrollDeltaX,
               scrollDeltaY: scrollDeltaY,
               scale: scale,
+              handledCallback: handledCallback,
             )
           );
           globalPointerState.activeButtons = buttons;
@@ -472,6 +477,7 @@ class PointerDataConverter {
               scrollDeltaX: scrollDeltaX,
               scrollDeltaY: scrollDeltaY,
               scale: scale,
+              handledCallback: handledCallback,
             )
           );
           globalPointerState.activeButtons = buttons;
@@ -506,6 +512,7 @@ class PointerDataConverter {
               scrollDeltaX: scrollDeltaX,
               scrollDeltaY: scrollDeltaY,
               scale: scale,
+              handledCallback: handledCallback,
             )
           );
           globalPointerState.activeButtons = buttons;
@@ -584,6 +591,7 @@ class PointerDataConverter {
               scrollDeltaX: scrollDeltaX,
               scrollDeltaY: scrollDeltaY,
               scale: scale,
+              handledCallback: handledCallback,
             )
           );
           if (kind == ui.PointerDeviceKind.touch) {
@@ -653,6 +661,7 @@ class PointerDataConverter {
               scrollDeltaX: scrollDeltaX,
               scrollDeltaY: scrollDeltaY,
               scale: scale,
+              handledCallback: handledCallback,
             )
           );
           globalPointerState.pointers.remove(device);
@@ -796,6 +805,7 @@ class PointerDataConverter {
               scrollDeltaX: scrollDeltaX,
               scrollDeltaY: scrollDeltaY,
               scale: scale,
+              handledCallback: handledCallback,
             )
           );
         case ui.PointerSignalKind.none:

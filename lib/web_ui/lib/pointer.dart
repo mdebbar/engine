@@ -34,6 +34,8 @@ enum PointerSignalKind {
   unknown
 }
 
+typedef PointerEventHandledCallback = void Function(bool handled);
+
 class PointerData {
   const PointerData({
     this.viewId = 0,
@@ -72,6 +74,7 @@ class PointerData {
     this.panDeltaY = 0.0,
     this.scale = 0.0,
     this.rotation = 0.0,
+    this.handledCallback,
   });
   final int viewId;
   final int embedderId;
@@ -109,6 +112,7 @@ class PointerData {
   final double panDeltaY;
   final double scale;
   final double rotation;
+  final PointerEventHandledCallback? handledCallback;
 
   @override
   String toString() => 'PointerData(viewId: $viewId, x: $physicalX, y: $physicalY)';
