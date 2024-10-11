@@ -568,6 +568,15 @@ Future<void> testMain() async {
       region: ui.Rect.fromLTRB(0, 0, testWidth, paragraph.height + 20),
     );
   });
+
+  test('text style - woff2 font', () async {
+    await testTextStyle(
+      'emoji woff2',
+      outerText: '🙂 👍',
+      innerText: '',
+      fontFamily: 'NotoColorEmoji',
+    );
+  });
 }
 
 /// A convenience function for testing paragraph and text styles.
