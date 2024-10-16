@@ -420,7 +420,6 @@ const List<String> apiFallbackFonts = <String>[
   'Noto Sans Gujarati',
   'Noto Sans Gunjala Gondi',
   'Noto Sans Gurmukhi',
-  'Noto Sans HK',
   'Noto Sans Hanunoo',
   'Noto Sans Hatran',
   'Noto Sans Hebrew',
@@ -428,9 +427,7 @@ const List<String> apiFallbackFonts = <String>[
   'Noto Sans Indic Siyaq Numbers',
   'Noto Sans Inscriptional Pahlavi',
   'Noto Sans Inscriptional Parthian',
-  'Noto Sans JP',
   'Noto Sans Javanese',
-  'Noto Sans KR',
   'Noto Sans Kaithi',
   'Noto Sans Kannada',
   'Noto Sans Kayah Li',
@@ -528,6 +525,9 @@ const List<String> apiFallbackFonts = <String>[
 /// handling.
 const List<String> splitFallbackFonts = <String>[
   'Noto Color Emoji',
+  'Noto Sans HK',
+  'Noto Sans JP',
+  'Noto Sans KR',
 ];
 
 Future<bool> _checkForLicenseAttribution(
