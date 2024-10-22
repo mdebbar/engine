@@ -385,7 +385,6 @@ const List<String> apiFallbackFonts = <String>[
   'Noto Sans',
   'Noto Music',
   'Noto Sans Symbols',
-  'Noto Sans Symbols 2',
   'Noto Sans Adlam',
   'Noto Sans Anatolian Hieroglyphs',
   'Noto Sans Arabic',
@@ -407,12 +406,9 @@ const List<String> apiFallbackFonts = <String>[
   'Noto Sans Cham',
   'Noto Sans Cherokee',
   'Noto Sans Coptic',
-  'Noto Sans Cuneiform',
   'Noto Sans Cypriot',
   'Noto Sans Deseret',
   'Noto Sans Devanagari',
-  'Noto Sans Duployan',
-  'Noto Sans Egyptian Hieroglyphs',
   'Noto Sans Elbasan',
   'Noto Sans Elymaic',
   'Noto Sans Ethiopic',
@@ -489,7 +485,6 @@ const List<String> apiFallbackFonts = <String>[
   'Noto Sans Psalter Pahlavi',
   'Noto Sans Rejang',
   'Noto Sans Runic',
-  'Noto Sans SC',
   'Noto Sans Saurashtra',
   'Noto Sans Sharada',
   'Noto Sans Shavian',
@@ -501,7 +496,6 @@ const List<String> apiFallbackFonts = <String>[
   'Noto Sans Sundanese',
   'Noto Sans Syloti Nagri',
   'Noto Sans Syriac',
-  'Noto Sans TC',
   'Noto Sans Tagalog',
   'Noto Sans Tagbanwa',
   'Noto Sans Tai Le',
@@ -528,9 +522,15 @@ const List<String> apiFallbackFonts = <String>[
 /// handling.
 const List<String> splitFallbackFonts = <String>[
   'Noto Color Emoji',
+  'Noto Sans Cuneiform',
+  'Noto Sans Duployan',
+  'Noto Sans Egyptian Hieroglyphs',
   'Noto Sans HK',
   'Noto Sans JP',
   'Noto Sans KR',
+  'Noto Sans SC',
+  'Noto Sans Symbols 2',
+  'Noto Sans TC',
 ];
 
 
